@@ -38,7 +38,6 @@ struct ViewerView: View {
             }
         }
         .frame(minWidth: 600, minHeight: 400)
-        .background(Color(NSColor.windowBackgroundColor))
     }
 }
 

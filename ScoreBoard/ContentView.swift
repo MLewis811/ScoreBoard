@@ -12,6 +12,8 @@ struct ContentView: View {
     @Binding var selectedItem: MediaItem?
     @State private var mediaItems: [MediaItem] = []
     
+    @Environment(\.openWindow) var openWindow
+    
     var body: some View {
         VStack {
             HStack {
@@ -41,6 +43,9 @@ struct ContentView: View {
             Spacer()
         }
         .frame(minWidth: 600, minHeight: 400)
+        .onAppear {
+            openWindow(id: "viewer-window")
+        }
     }
     
     func selectMedia() {
