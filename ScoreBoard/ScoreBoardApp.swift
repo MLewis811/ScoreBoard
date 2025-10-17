@@ -19,7 +19,7 @@ struct ScoreBoardApp: App {
         }
 
         // Viewer window: always reflects the selected item
-        WindowGroup("Viewer", id: "viewer-window") {
+        Window("Viewer", id: "viewer-window") {
             ViewerView(selectedItem: $selectedItem)
         }
     }

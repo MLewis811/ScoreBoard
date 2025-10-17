@@ -24,10 +24,11 @@ struct ViewerView: View {
                         .onAppear {
                             playerManager.loadVideo(url: item.url)
                         }
+                        .clipped()
                 } else if let image = NSImage(contentsOf: item.url) {
                     Image(nsImage: image)
                         .resizable()
-                        .scaledToFit()
+                        .scaledToFill()
                 } else {
                     Text("Unable to load media")
                         .foregroundStyle(.secondary)
