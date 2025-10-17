@@ -12,9 +12,6 @@ struct ScoreBoardApp: App {
     // The selected item is shared between both windows
     @State private var selectedItem: MediaItem? = nil
     
-    @Environment(\.openWindow) private var openWindow
-    @Environment(\.dismissWindow) private var dismissWindow
-    
     var body: some Scene {
         // Main window: for selection
         WindowGroup("Media Browser") {
@@ -22,9 +19,8 @@ struct ScoreBoardApp: App {
         }
 
         // Viewer window: always reflects the selected item
-        WindowGroup("Viewer") {
+        Window("Viewer", id: "viewer-window") {
             ViewerView(selectedItem: $selectedItem)
         }
-        .id("viewer-window")
     }
 }

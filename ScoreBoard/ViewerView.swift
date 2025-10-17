@@ -10,13 +10,20 @@ import AVKit
 
 struct ViewerView: View {
     @Binding var selectedItem: MediaItem?
+    @StateObject private var playerManager = PlayerManager()
     
     var body: some View {
         ZStack {
             if let item = selectedItem {
                 if item.isVideo {
-                    VideoPlayer(player: AVPlayer(url: item.url))
-                        .aspectRatio(contentMode: .fit)
+                    VideoPlayer(player: playerManager.player)
+                        .aspectRatio(contentMode: .fill)
+                        .onChange(of: item.url) { oldValue, newValue in
+                            playerManager.loadVideo(url: newValue)
+                        }
+                        .onAppear {
+                            playerManager.loadVideo(url: item.url)
+                        }
                 } else if let image = NSImage(contentsOf: item.url) {
                     Image(nsImage: image)
                         .resizable()
